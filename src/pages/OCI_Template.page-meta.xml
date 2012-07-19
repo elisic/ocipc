@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>19.0</apiVersion>
+    <description>template page for all public OCIPC pages
+includes branded header and footer</description>
+    <label>OCI Template</label>
+</ApexPage>

@@ -1,0 +1,60 @@
+<apex:page controller="InitializationController">
+<apex:form >
+
+<apex:pageBlock title="Reference Data" rendered="{!not $Setup.Init__c.Units__c}">
+1., Click here to set up standard unit codes:
+<apex:pageBlockButtons location="bottom">
+<apex:commandButton action="{!populateUnits}" title="Populate Units" value="Populate Units"/>
+</apex:pageBlockButtons>
+</apex:pageBlock>
+<apex:pageBlock title="1. Reference Data" rendered="{!$Setup.Init__c.Units__c}">
+Unit codes have been populated.
+</apex:pageBlock>
+
+<apex:pageBlock title="Product List">
+<apex:pageBlockSection title="2. Categories" collapsible="false" columns="1">
+Set up your product categories using the Categories tab.
+</apex:pageBlockSection>
+<apex:pageBlockSection title="3. UNSPSC" collapsible="false" columns="1">
+Set up UNSPSC codes that your roducts fall under. This can be a more or less detailed categorization that the use of categories, therefore Categories are not associated with UNSPSC codes.<br/>
+For a full list of UNSPSC code please refer to <a href="http://www.unspsc.org/">UNSPSC.org</a>.
+</apex:pageBlockSection>
+<apex:pageBlockSection title="4. Products" collapsible="false" columns="1">
+Set up your list of Products.
+</apex:pageBlockSection>
+</apex:pageBlock>
+<apex:pageBlock title="Buyers and Special Pricing">
+<apex:pageBlockSection title="5. Buyers" collapsible="false" columns="1">
+If you want to offer different pricing for different buyers you an set this up using the Buyers tab.<br/>
+Buyers will have to authenticate themselves by providing username and password in the URL when invoking the catalog.
+</apex:pageBlockSection>
+<apex:pageBlockSection title="6. Negotiated Prices" collapsible="false" columns="1">
+Set up special pricing for buyers here. Products that do not have negotiated prices will use the default price.
+</apex:pageBlockSection>
+</apex:pageBlock>
+<apex:pageblock title="Public WebSite">
+<apex:pageBlockSection title="7. Web StoreFront" collapsible="false" columns="1">
+Using SalesForce Sites set up the public storefront.<br/>
+Add the following VisualForce pages to the site:
+<ul>
+<li>elisic.OCI_Catalog</li>
+<li>elisic.OCI_Checkout</li>
+<li>elisic.OCI_Detail</li>
+<li>elisic.OCI_Entry</li>
+<li>elisic.OCI_Template</li>
+</ul>
+Set the default page to OCI_Entry<br/>
+in Public Access Settings grant Read and View All Data access for the following custom objects:
+<ul>
+<li>Categories</li>
+<li>Products</li>
+<li>Units</li>
+<li>UNSPSC codes</li>
+<li>Buyers</li>
+<li>Negotiated Product</li>
+</ul>
+Finally do not forget to <b>activate</b> the site.
+</apex:pageBlockSection>
+</apex:pageblock>
+</apex:form>
+</apex:page>

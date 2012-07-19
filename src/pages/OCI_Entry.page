@@ -1,0 +1,14 @@
+<apex:page controller="OCIController" tabStyle="SicProduct__c" sidebar="false" showHeader="false" action="{!init}">
+<apex:outputPanel layout="none" rendered="{!FUNCTION=='BACKGROUND_SEARCH'}">
+<body>
+    <c:ProductListOCI OCIProducts="{!SelectedProducts}" HOOK_URL="{!HOOK_URL}" returntarget="{!returntarget}">
+    </c:ProductListOCI>
+</body>
+</apex:outputPanel>
+<apex:outputPanel layout="none" rendered="{!FUNCTION=='VALIDATE'}">
+<body onload="document.getElementById('ociform').submit()">
+    <c:ProductListOCI HOOK_URL="{!HOOK_URL}" returntarget="{!returntarget}" OCIProducts="{!SelectedProducts}" showSubmit="false">
+    </c:ProductListOCI>
+</body>
+</apex:outputPanel>
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page standardController="SicProduct__c" extensions="ceUploadPictureDocument">
+    <apex:messages />
+    <apex:form id="uploadForm">
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:outputLabel for="picture">Current Product Picture</apex:outputLabel>
+                <apex:image id="picture" url="{!$Site.Prefix + '/servlet/servlet.ImageServer?id=' + SicProduct__c.PictureDocumentID__c + '&oid=' + $Organization.Id }"/>
+                <apex:outputText >Upload a new picture for the product. The suggested image size is 100 x 100 pixels.</apex:outputText>
+                <apex:inputFile accept="image/jpeg,image/pjpeg,impage/png,image/x-png,image/gif" 
+                    contentType="{!PictureDocument.ContentType}"
+                    value="{!PictureDocument.body}"
+                    filename="{!PictureDocument.name}"
+                 />
+                 <apex:commandButton action="{!doUploadPicture}" value="Upload"/>
+                 <apex:commandButton action="{!view}" value="Cancel"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

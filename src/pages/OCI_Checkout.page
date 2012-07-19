@@ -1,0 +1,26 @@
+<apex:page controller="OCIController" tabStyle="SicProduct__c" showHeader="false" sidebar="false">
+<apex:composition template="OCI_Template">
+<apex:define name="main">
+    <apex:sectionHeader description="Confirm shopping cart contents and Checkout" title="Product Catalog" subtitle="Step 2 of 2"/>
+    <apex:messages />
+        <apex:pageBlock >
+            <c:ProductListVisible OCIProducts="{!SelectedProducts}">
+            </c:ProductListVisible>        
+            <apex:pageBlockSection title="Send to SAP" collapsible="false" columns="1">
+                   <apex:pageMessage title="Confirmation" detail="Please verify the product quanities and prices in the shopping cart and then send it to the receiving SAP system." severity="confirm" strength="3"/>                   
+                   <apex:pageBlockSectionItem >
+                        <c:ProductListOCI OCIProducts="{!SelectedProducts}" HOOK_URL="{!HOOK_URL}" returntarget="{!returntarget}">
+                        </c:ProductListOCI>
+                   </apex:pageBlockSectionItem>           
+            </apex:pageBlockSection>
+            <apex:facet name="footer">
+                <apex:outputPanel >
+                    <apex:form >
+                    <apex:commandButton action="{!displayCatalog}" value="Back to Catalog"/>
+                    </apex:form>
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:pageBlock>
+</apex:define>
+</apex:composition>
+</apex:page>

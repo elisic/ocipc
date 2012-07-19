@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>19.0</apiVersion>
+    <description>Invisible list of products according to the OCI specification
+A form with hidden fields
+The ID of the form is ``ociform&apos;&apos;</description>
+    <label>ProductListOCI</label>
+</ApexComponent>

@@ -1,0 +1,45 @@
+<apex:component >
+    <apex:attribute name="OCIProducts" description="List of OCIProducts to be sent via OCI" required="true" type="OCIProduct[]"/>
+    <apex:attribute name="HOOK_URL" description="OCI HOOK_URL" required="true" type="String"/>
+    <apex:attribute name="returntarget" description="OCI returntarget" required="true" type="String"/>
+    <apex:attribute name="showSubmit" description="Show or hide the submit button" required="false" type="Boolean" default="true"/>
+        <apex:outputPanel >
+            <form id="ociform" action="{!HOOK_URL}" method="post" target="{!returntarget}">
+                <apex:variable var="rownum" value="{!1}"/>
+                    <apex:repeat value="{!OCIProducts}" var="p">
+                        <input type="hidden" name="NEW_ITEM-DESCRIPTION[{!FLOOR(rownum)}]" value="{!p.name}" />
+                        <input type="hidden" name="NEW_ITEM-MATNR[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-MATGROUP[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-QUANTITY[{!FLOOR(rownum)}]" value="{!p.quantity}" />
+                        <input type="hidden" name="NEW_ITEM-UNIT[{!FLOOR(rownum)}]" value="{!p.unitISO}" />
+                        <input type="hidden" name="NEW_ITEM-PRICE[{!FLOOR(rownum)}]" value="{!p.price}" />
+                        <input type="hidden" name="NEW_ITEM-PRICEUNIT[{!FLOOR(rownum)}]" value = "{!p.priceUnit}"/>            
+                        <input type="hidden" name="NEW_ITEM-CURRENCY[{!FLOOR(rownum)}]" value="{!p.currencyDisplay}" />           
+                        <input type="hidden" name="NEW_ITEM-LEADTIME[{!FLOOR(rownum)}]" value = "{!p.leadTime}"/>    
+                        <input type="hidden" name="NEW_ITEM-VENDOR[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-VENDORMAT[{!FLOOR(rownum)}]" value = "{!p.code}"/>
+                        <input type="hidden" name="NEW_ITEM-MANUFACTCODE[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-MANUFACTMAT[{!FLOOR(rownum)}]" value = "{!p.manufacturerProductNumber}"/>
+                        <input type="hidden" name="NEW_ITEM-CONTRACT[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-CONTRACT_ITEM[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-SERVICE[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-EXT_QUOTE_ID[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-EXT_QUOTE_ITEM[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-EXT_PRODUCT_ID[{!FLOOR(rownum)}]" value = "{!p.id}"/>
+                        <input type="hidden" name="NEW_ITEM-LONGTEXT_{!FLOOR(rownum)}:132[]" value = "{!p.description}"/>
+                        <input type="hidden" name="NEW_ITEM-CUST_FIELD1[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-CUST_FIELD2[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-CUST_FIELD3[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-CUST_FIELD4[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-CUST_FIELD5[{!FLOOR(rownum)}]" value = ""/>
+                        <input type="hidden" name="NEW_ITEM-EXT_SCHEMA_TYPE[{!FLOOR(rownum)}]" value = "{!IF(NOT(ISBLANK(p.UNSPSCcode)),'UNSPSC','')}"/>
+                        <input type="hidden" name="NEW_ITEM-EXT_CATEGORY_ID[{!FLOOR(rownum)}]" value = "{!p.UNSPSCcode}"/>                            
+              
+                        <apex:variable var="rownum" value="{!rownum+1}"/>
+                    </apex:repeat>
+                    <apex:outputPanel layout="none" rendered="{!showSubmit}">
+                    <input type="submit" VALUE="Send" class="btn"/>
+                    </apex:outputPanel>
+                </form>
+            </apex:outputPanel>    
+</apex:component>

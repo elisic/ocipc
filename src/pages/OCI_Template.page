@@ -1,0 +1,5 @@
+<apex:page controller="OCIController" sidebar="false" showHeader="false" tabStyle="SicProduct__c">
+    <p align="right">SupplierCatalog <a href="http://www.elisic.com"><apex:image alt="EliSic.com" value="{!$Resource.elisic_small}"/></a></p>
+    <apex:insert name="main"/>
+    <p align="center">&copy; 2010 Tamas Simon (Sic) <a href="http://www.elisic.com">EliSic.com</a></p>
+</apex:page>

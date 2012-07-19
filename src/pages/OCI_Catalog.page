@@ -1,0 +1,123 @@
+<apex:page controller="OCIController" tabStyle="SicProduct__c" showHeader="false" sidebar="false">
+<apex:composition template="OCI_Template">
+<apex:define name="main">
+    <apex:sectionHeader description="Search products or browse the catalog. Add selected products to the shopping cart and adjust quantities." title="Product Catalog" subtitle="Step 1 of 2"/>
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock title="Products">
+        
+        <apex:panelGrid columns="2" width="100%">
+            <apex:panelGrid columns="1">
+                <apex:outputLabel value="Search for" for="searchfor"/>
+                <apex:inputText id="searchfor" value="{!Searchfor}"/>
+                <apex:commandButton value="Find" action="{!SearchProducts}" rerender="searchresults" status="searchStatus" tabindex="0"/>
+                <apex:actionStatus id="searchStatus" startText="Searching...">
+                    <apex:facet name="stop"><br/></apex:facet>
+                </apex:actionStatus>
+                <apex:commandLink action="{!SearchProducts}" rerender="searchresults" status="searchStatus" value="All" immediate="true">
+                    <apex:param name="cat" assignTo="{!currentCategoryID}" value="all"/>
+                </apex:commandLink>
+                <apex:repeat value="{!Categories}" var="cat">
+                    <apex:outputpanel layout="block">
+                    <apex:commandLink action="{!SearchProducts}" rerender="searchresults" status="searchStatus" value="{!cat.name}" immediate="true">
+                        <apex:param name="cat" assignTo="{!currentCategoryID}" value="{!cat.id}"/>
+                    </apex:commandLink>
+                    </apex:outputpanel>
+                </apex:repeat>
+            </apex:panelGrid>
+            <apex:panelGroup >
+            <apex:outputPanel id="searchresults" layout="none">
+            <apex:pageBlockTable value="{!FoundProducts}" var="fp" >
+                <apex:facet name="caption">
+                <apex:outputText value="Filter: {!BLANKVALUE(TRIM(searchFor), 'None')} Category: {!CurrentCategoryName} - {!NumberOfProductsFound} Products"/>
+                </apex:facet>
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                    <apex:outputLabel value="Show Approved Products Only" for="filterApproved"/>
+                    <apex:inputCheckbox id="filterApproved" value="{!filterApprovedOnly}">
+                    <apex:actionSupport event="onclick" rerender="searchresults"/>
+                    </apex:inputCheckbox>
+                    </apex:outputPanel>          
+                </apex:facet>
+                <apex:column headerValue="Picture">
+                    <apex:image url="{!$Site.Prefix + '/servlet/servlet.ImageServer?id=' + fp.pictureDocumentID + '&oid=' + $Organization.Id }"/>
+                </apex:column>
+                <apex:column headerValue="Category">
+                    <apex:outputText value="{!fp.category}"/>
+                </apex:column>
+                <apex:column headerValue="Name">
+                    <apex:commandLink action="{!displayDetail}" immediate="true">
+                        <apex:param name="p" assignTo="{!currentProductID}" value="{!fp.id}"/>
+                        <apex:outputText value="{!fp.name}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column headerValue="Description" value="{!fp.description }"/>
+                <apex:column headerValue="List Price" value="{!fp.original_priceDisplay}"/>
+                <apex:column headerValue="Your Price" value="{!fp.negotiated_priceDisplay}" rendered="{!isBuyer}"/>
+                <apex:column headerValue="Add to Cart">
+                    <apex:commandlink value="Add to Cart" action="{!addCurrentProductToSelected}" rerender="selected_products,checkout_button" immediate="true">
+                        <apex:param name="p" assignTo="{!currentProductID}" value="{!fp.id}"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageMessage title="No products found" severity="info" strength="3" rendered="{!FoundProducts.Empty}">
+                <apex:outputText value="Filter: {!BLANKVALUE(TRIM(searchFor), 'None')} Category: {!CurrentCategoryName} - {!NumberOfProductsFound} Products"/>
+            </apex:pageMessage>
+            </apex:outputPanel>
+            </apex:panelGroup>
+        </apex:panelGrid>
+        
+        </apex:pageBlock>
+        <apex:pageBlock id="selected_products" title="Shopping Cart">
+            <apex:pageBlockTable value="{!SelectedProducts}" var="sp" rendered="{!NOT(SelectedPRoducts.Empty)}">
+                <apex:column headerValue="Name">
+                    <apex:commandLink action="{!displayDetail}" immediate="true">
+                        <apex:param name="p" assignTo="{!currentProductID}" value="{!sp.id}"/>
+                        <apex:outputText value="{!sp.name}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column headerValue="List Price" value="{!sp.original_priceDisplay}"/>
+                <apex:column headerValue="Your Price" value="{!sp.negotiated_priceDisplay}" rendered="{!isBuyer}"/>
+                <apex:column headerValue="Quantity">
+                    <apex:inputText value="{!sp.quantity}">
+                    <apex:actionSupport event="onchange" rerender="{!$Component.cost},{!$Component.saving}" status="{!$Component.cost_recalc_status}"/>
+                    </apex:inputText>
+                    <apex:outputText value="{!sp.unitDisplay}"/>
+                </apex:column>
+                <apex:column headerValue="Cost">
+                    <apex:panelgrid columns="2">                   
+                        <apex:outputText id="cost" value="{0} {1}">
+                            <apex:param value="{!sp.cost}"/>
+                            <apex:param value="{!sp.currencyDisplay}"/>
+                        </apex:outputText>
+                        <apex:actionStatus startText="???" id="cost_recalc_status"/>
+                    </apex:panelgrid>
+                </apex:column>
+                <apex:column headerValue="You Save" rendered="{!isBuyer}">
+                    <apex:panelgrid columns="2">                   
+                        <apex:outputText id="saving" value="{0} {1}">
+                            <apex:param value="{!sp.saving}"/>
+                            <apex:param value="{!sp.currencyDisplay}"/>
+                        </apex:outputText>
+                        <apex:actionStatus startText="???" id="saving_recalc_status"/>
+                    </apex:panelgrid>
+                </apex:column>
+                <apex:column headerValue="Usually Ships" value="{!sp.leadtimeDisplay}"/>
+                <apex:column headerValue="Remove from Cart">
+                    <apex:commandlink value="Remove from Cart" action="{!removeCurrentProductFromSelected}" rerender="selected_products,checkout_button" immediate="true">
+                        <apex:param name="p" assignTo="{!currentProductID}" value="{!sp.id}"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:PageBlock>
+        <apex:pageBlock >
+            <apex:facet name="footer">
+                <apex:outputPanel id="checkout_button">
+                    <apex:commandButton value="Checkout" action="{!displayCheckout}" styleClass="btn" disabled="{!SelectedPRoducts.Empty}" tabindex="1"/>
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:pageBlock>       
+    </apex:form>
+</apex:define>
+</apex:composition>
+</apex:page>

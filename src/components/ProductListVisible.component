@@ -1,0 +1,23 @@
+<apex:component >
+    <apex:attribute name="OCIProducts" description="List of OCIProducts to be displayed" required="true" type="OCIProduct[]"/>
+    <apex:attribute name="ShowCostAndQuantity" description="Show or hide Cost and Quantity columns" default="true" required="false" type="Boolean"/>
+    <apex:pageBlockSection title="Shopping Cart" collapsible="false" columns="1">   
+        <apex:pageBlockTable title="Shopping Cart" value="{!OCIProducts}" var="p">
+            <apex:column headerValue="Name" value="{!p.name}"/>
+            <apex:column headerValue="Price" value="{!p.priceDisplay}"/>
+            <apex:column headerValue="Quantity" rendered="{!ShowCostAndQuantity}">
+                <apex:outputText value="{0} {1}">
+                    <apex:param value="{!p.quantity}"/>
+                    <apex:param value="{!p.unitDisplay}"/>
+                </apex:outputText>
+            </apex:column>
+            <apex:column headerValue="Cost" rendered="{!ShowCostAndQuantity}">
+                <apex:outputText id="cost" value="{0} {1}">
+                    <apex:param value="{!p.cost}"/>
+                    <apex:param value="{!p.currencyDisplay}"/>
+                </apex:outputText>
+            </apex:column>                
+            <apex:column headerValue="Usually Ships" value="{!p.leadTimeDisplay}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+</apex:component>

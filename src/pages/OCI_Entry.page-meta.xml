@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>19.0</apiVersion>
+    <description>entry page of OCI
+captures the input parameters in the shared controller and redirects according to FUNCTION
+If the function is BACKGROUND_SEARCH or VALIDATE then this page is used to return results because SRM will not handle redirects so it has to be this URL.
+The page does not have any visual elements. It&apos;s parsed by SRM.</description>
+    <label>OCI Entry</label>
+</ApexPage>

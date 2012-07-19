@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>19.0</apiVersion>
+    <description>Visible display of a list of products in a table used for confirmation with the user.</description>
+    <label>ProductListVisible</label>
+</ApexComponent>

@@ -1,0 +1,3 @@
+<apex:page id="showImagePage" standardController="SicProduct__c">
+<apex:image url="{!$Site.Prefix + '/servlet/servlet.ImageServer?id=' + SicProduct__c.PictureDocumentID__c + '&oid=' + $Organization.Id }"/>
+</apex:page>

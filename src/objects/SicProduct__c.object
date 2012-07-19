@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>A Product in the Product Catalog
+Note: don&apos;t make any field required, only set it required on page layouts
+This will ensure that the customization works</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Category__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Product Category to assist users in browsing the catalog</inlineHelpText>
+        <label>Category</label>
+        <referenceTo>SicCategory__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Item currency.
+Must be maintained as ISO code in the SRM server.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Item currency.
+Must be maintained as ISO code in the SRM server.</inlineHelpText>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>Description of the item</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the item</inlineHelpText>
+        <label>Description</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Detail__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Detailed description of the product in Rich Text with images</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Detailed description of the product in Rich Text with images</inlineHelpText>
+        <label>Detail</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Lead_Time_Display__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Lead Time in text format</description>
+        <externalId>false</externalId>
+        <formula>&apos;in &apos; +  TEXT(Lead_Time__c) + &apos; days&apos;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Lead Time in text format</inlineHelpText>
+        <label>Usually Ships</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Time__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Delivery time of the item in days</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Delivery time of the item in days</inlineHelpText>
+        <label>Lead Time</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Long_Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Long Description
+Description of a configuration, for example.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Long Description
+Description of a configuration, for example.</inlineHelpText>
+        <label>Long Description</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Manufacturer_Product_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Manufacturer Product Number
+This information is sent via OCI</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Manufacturer Product Number</inlineHelpText>
+        <label>Manufacturer Product Number</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PictureDocumentID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the Product Picture document object</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ID of the Product Picture document object</inlineHelpText>
+        <label>Picture Document ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picture__c</fullName>
+        <deprecated>false</deprecated>
+        <description>image tag for the product picture to be used on internal page layouts. It will not work on externally exposed page layouts</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;/servlet/servlet.ImageServer?id=&quot; +  PictureDocumentID__c  + &quot;&amp;oid=&quot; + $Organization.Id, &quot;picture&quot;)</formula>
+        <inlineHelpText>Product Picture</inlineHelpText>
+        <label>Picture</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price_Display__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Price displayed as &apos;10 CAD per 1 EA&apos;</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Price__c) +  &apos; &apos; + TEXT(Currency__c) + IF(Unit_Text__c &lt;&gt; &apos;Each&apos;, &apos; per &apos;, &apos;&apos;) +   IF(Price_Unit__c &gt; 1, TEXT(Price_Unit__c), &apos;&apos;)   + &apos; &apos; +  Unit_Text__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>price displayed with currency and price unit</inlineHelpText>
+        <label>Price Per Unit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price_Unit__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Price unit of the item</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Price unit of the item</inlineHelpText>
+        <label>Price Unit</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Price of an item per price unit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Price of an item per price unit</inlineHelpText>
+        <label>Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>UNSPSC__c</fullName>
+        <deprecated>false</deprecated>
+        <description>UNSPSC category expressed with the Commodity Ttitle</description>
+        <externalId>false</externalId>
+        <inlineHelpText>UNSPSC category expressed with the Commodity Ttitle</inlineHelpText>
+        <label>UNSPSC</label>
+        <referenceTo>UNSPSC__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>UNSPSC_code__c</fullName>
+        <deprecated>false</deprecated>
+        <description>UNSPSC Commodity Code, use this in OCI</description>
+        <externalId>false</externalId>
+        <formula>UNSPSC__r.Commodity_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>UNSPSC Commodity Code</inlineHelpText>
+        <label>UNSPSC code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_ISO__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Unit ISO code</description>
+        <externalId>false</externalId>
+        <formula>Unit__r.ISO__c</formula>
+        <inlineHelpText>Unit ISO code, use this for OCI</inlineHelpText>
+        <label>UnitISO</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Text__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Unit described with Text</description>
+        <externalId>false</externalId>
+        <formula>Unit__r.Text__c</formula>
+        <inlineHelpText>Unit</inlineHelpText>
+        <label>Unit</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <deprecated>false</deprecated>
+        <description>measurement unit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>measurement unit</inlineHelpText>
+        <label>Unit</label>
+        <referenceTo>Unit__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Product</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>P-{0000}</displayFormat>
+        <label>Product Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Products</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Price__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Currency__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Price_Unit__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Unit_Text__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Lead_Time__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Long_Description__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Upload_Picture</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Upload Picture</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>var Id = &apos;{!SicProduct__c.Id}&apos;;
+location.href = &apos;/apex/elisic__OCI_UploadPictureDocument?id=&apos;+Id;</url>
+    </webLinks>
+</CustomObject>
