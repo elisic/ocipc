@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="OCIPC : OCI compliant Product Catalog" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>OCIPC</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/elisic/ocipc">View on GitHub</a>
+
+          <h1 id="project_title">OCIPC</h1>
+          <h2 id="project_tagline">OCI compliant Product Catalog</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/elisic/ocipc/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/elisic/ocipc/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>The Supplier Catalog provides online product catalog capability for vendors and allows their buyers who run SAP Supplier Relationship Management (SRM) to integrate this catalog into their application.</p>
+
+<h1>Usage</h1>
+
+<p>It creates a public web storefront and allows the buyer to register its URL in the SAP SRM system. The storefront provides standard shopping-cart functionality with the differece being that at checkout instead of asking the end user to provide payment information it sends the contents of the shopping cart to the receiving SAP SRM system.
+From there on a purchase order can be sent out by the buyer -usually governed by agreed upon terms, the fulfillment is performed by the vendor and the payments are handled. All this happens outside of the Supplier Catalog application.</p>
+
+<h2>Catalog features</h2>
+
+<ul>
+<li>Product details such as description and pricing</li>
+<li>One level categorization</li>
+<li>Search and per-category filtering</li>
+<li>Support multiple buyer who authenticate with username/password in the URL</li>
+<li>Support for negotiated special pricing for buyers
+## Additional capability:</li>
+<li>Support for background search when the buyer is searching for products in multiple pre-configured catalogs at the same time. The search is handled by the SAP SRM system, the catalogs are returning results ‘behind the scene” with no visible user interface.</li>
+<li>Validation. the buyer can set up repeating purchases, for example if the catalog provides office stationary a department at the buyer can select to purchase one printer ink cartridge and five boxes of paper every month. Using the validation the buyer can inquire the catalog if the last known prices and availability information is still valid.</li>
+<li>Support for detail page call-back when the SAP SRM system looks up a product by identifier, providing the means for the vendor to display a detailed product information page in their catalog.
+# Technical description
+The Supplier Catalog implements SAP’s Open Catalog Interface (OCI) specification as described in this document:
+<a href="www.attsuppliers.com/downloads/OCI_40_EN20030611.pdf">www.attsuppliers.com/downloads/OCI_40_EN20030611.pdf</a>
+All optional OCI functions are implemented.
+The product was tested with SAP SRM and was used to test the external catalog capability of the SAP SRM implementation.</li>
+</ul><p>The OCI specification expects the catalog to provide a URL where OCI request will be handled and appropriate answer pages will be returned. This entry point is provided by the Supplier Catalog’s OCI_Entry page. Salesforce Sites is utilized to provide the public storefront.</p>
+
+<p>The Supplier Catalog does not provide standalone web-shop capabilities at the moment. Its capabilities are targeted for the specific purpose of integration with one (or multiple) SAP SRM systems. This is similar to Google Product Search which focuses on solving one task good and relies on the merchants to upload their list of products.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">OCIPC maintained by <a href="https://github.com/elisic">elisic</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
