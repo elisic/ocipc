@@ -45,12 +45,14 @@ From there on a purchase order can be sent out by the buyer -usually governed by
 <li>One level categorization</li>
 <li>Search and per-category filtering</li>
 <li>Support multiple buyer who authenticate with username/password in the URL</li>
-<li>Support for negotiated special pricing for buyers
-## Additional capability:</li>
+<li>Support for negotiated special pricing for buyers</li>
+<h2>Additional capability:</h2>
+<ul>
 <li>Support for background search when the buyer is searching for products in multiple pre-configured catalogs at the same time. The search is handled by the SAP SRM system, the catalogs are returning results ‘behind the scene” with no visible user interface.</li>
 <li>Validation. the buyer can set up repeating purchases, for example if the catalog provides office stationary a department at the buyer can select to purchase one printer ink cartridge and five boxes of paper every month. Using the validation the buyer can inquire the catalog if the last known prices and availability information is still valid.</li>
-<li>Support for detail page call-back when the SAP SRM system looks up a product by identifier, providing the means for the vendor to display a detailed product information page in their catalog.
-# Technical description
+<li>Support for detail page call-back when the SAP SRM system looks up a product by identifier, providing the means for the vendor to display a detailed product information page in their catalog.</li>
+</ul>
+<h1>Technical description</h1>
 The Supplier Catalog implements SAP’s Open Catalog Interface (OCI) specification as described in this document:
 <a href="www.attsuppliers.com/downloads/OCI_40_EN20030611.pdf">www.attsuppliers.com/downloads/OCI_40_EN20030611.pdf</a>
 All optional OCI functions are implemented.
